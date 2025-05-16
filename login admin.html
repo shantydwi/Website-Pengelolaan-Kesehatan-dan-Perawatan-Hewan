@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login - PetCare</title>
+  <link rel="stylesheet" href="login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Login Card -->
+  <div class="card" id="loginCard">
+    <img src="Pet Care.png" alt="Logo" class="pet-icon">
+    <h2>Login Admin</h2>
+    <form onsubmit="return adminLogin(event)">
+      <label for="adminLoginEmail">Email</label>
+      <input type="email" id="adminLoginEmail" required>
+      <label for="adminLoginPassword">Password</label>
+      <input type="password" id="adminLoginPassword" required>
+      <button type="submit">Login</button>
+    </form>
+    <div class="switch">
+      Belum punya akun admin? <a href="#" onclick="toggleAdminForms('register')">Daftar</a>
+    </div>
+  </div>
+
+  <!-- Register Card -->
+  <div class="card" id="registerCard" style="display: none">
+    <img src="Pet Care.png" alt="Logo" class="pet-icon">
+    <h2>Daftar Admin</h2>
+    <form onsubmit="return adminRegister(event)">
+      <label for="adminRegisterName">Nama</label>
+      <input type="text" id="adminRegisterName" required>
+      <label for="adminRegisterEmail">Email</label>
+      <input type="email" id="adminRegisterEmail" required>
+      <label for="adminRegisterPassword">Password</label>
+      <input type="password" id="adminRegisterPassword" required>
+      <button type="submit">Daftar</button>
+    </form>
+    <div class="switch">
+      Sudah punya akun? <a href="#" onclick="toggleAdminForms('login')">Login</a>
+    </div>
+  </div>
+
+  <script>
+    function toggleAdminForms(show) {
+      document.getElementById('loginCard').style.display = show === 'login' ? 'block' : 'none';
+      document.getElementById('registerCard').style.display = show === 'register' ? 'block' : 'none';
+    }
+
+    function adminRegister(event) {
+      event.preventDefault();
+      const name = document.getElementById('adminRegisterName').value;
+      const email = document.getElementById('adminRegisterEmail').value;
+      const password = document.getElementById('adminRegisterPassword').value;
+
+      let admins = JSON.parse(localStorage.getItem('admins')) || [];
+
+      // Cek jika email sudah terdaftar
+      if (admins.some(admin => admin.email === email)) {
+        alert("Email sudah terdaftar sebagai admin!");
+        return;
+      }
+
+      const newAdmin = { name, email, password };
+      admins.push(newAdmin);
+      localStorage.setItem('admins', JSON.stringify(admins));
+      alert("Pendaftaran admin berhasil!");
+      toggleAdminForms('login');
+    }
+
+    function adminLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('adminLoginEmail').value;
+      const password = document.getElementById('adminLoginPassword').value;
+
+      const admins = JSON.parse(localStorage.getItem('admins')) || [];
+      const matchedAdmin = admins.find(admin => admin.email === email && admin.password === password);
+
+      if (matchedAdmin) {
+        localStorage.setItem('activeAdmin', JSON.stringify(matchedAdmin)); // Simpan admin aktif
+        window.location.href = 'admin.html'; // Redirect ke admin.html setelah login berhasil
+      } else {
+        alert("Email atau password salah.");
+      }
+    }
+
+    // Tambahkan akun admin default jika belum ada
+    const defaultAdmin = { name: "Admin", email: "admin@gmail.com", password: "admin" };
+    let admins = JSON.parse(localStorage.getItem('admins')) || [];
+    const exists = admins.some(admin => admin.email === defaultAdmin.email);
+
+    if (!exists) {
+      admins.push(defaultAdmin);
+      localStorage.setItem('admins', JSON.stringify(admins));
+    }
+  </script>
+</body>
+</html>

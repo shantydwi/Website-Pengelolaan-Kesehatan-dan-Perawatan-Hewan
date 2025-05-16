@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beranda - PetCare</title>
+  <link rel="stylesheet" href="beranda.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <img src="Pet Care.png" alt="Logo PetCare" class="logo" />
+    <h1>Selamat Datang di PetCare!</h1>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <nav>
+      <ul class="navbar">
+        <li><a href="#" onclick="showBeranda()">Beranda</a></li>
+        <li><a href="#" onclick="showSection('artikelSection')">Artikel</a></li>
+        <li><a href="#" onclick="showSection('forumSection')">Forum</a></li>
+        <li><a href="#" onclick="showSection('adopsiSection')">Permintaan Adopsi</a></li>
+        <li><a href="#" onclick="showSection('kontakSection')">Kontak & Pesan</a></li>
+        <li><button onclick="aksesAdmin()" class="nav-btn">Admin</button></li>
+        <li><button onclick="logout()" class="nav-btn">Logout</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Beranda -->
+    <section class="welcome" id="berandaSection" style="display: block;">
+      <h2>Halo <span id="userName"></span>!</h2>
+      <p>Terima kasih telah menggunakan layanan kami untuk merawat hewan kesayangan Anda.</p>
+    </section>
+
+    <!-- Artikel -->
+    <section id="artikelSection" style="display: none;">
+      <h2>Artikel Singkat</h2>
+      <div id="artikelContainer">
+        <article>
+          <h3>Merawat Kucing: Lebih dari Sekadar Memberi Makan</h3>
+          <p>Kucing membutuhkan perhatian lebih dari sekadar makanan. Pastikan mereka memiliki tempat tidur yang nyaman, mainan interaktif, serta waktu bermain bersama pemiliknya. Rutin grooming juga penting, terutama untuk kucing berbulu panjang.</p>
+        </article>
+        <article>
+          <h3>Tips Memandikan Anjing Tanpa Drama</h3>
+          <p>Gunakan air hangat, shampo khusus anjing, dan siapkan handuk lembut. Memandikan anjing sebaiknya dilakukan di waktu mereka sedang tenang. Beri reward setelah mandi agar mereka merasa positif dengan rutinitas ini.</p>
+        </article>
+        <article>
+          <h3>Perawatan Dasar untuk Kelinci yang Sehat dan Bahagia</h3>
+          <p>Kelinci memerlukan kandang luas, jerami bersih sebagai alas, dan makanan berupa sayuran hijau serta pelet khusus. Jangan lupa waktu bermain di luar kandang dan pemeriksaan gigi secara berkala karena gigi kelinci terus tumbuh.</p>
+        </article>
+        <article>
+          <h3>Burung Peliharaan: Bukan Sekadar Diberi Kandang</h3>
+          <p>Burung seperti parkit atau lovebird butuh kandang yang luas, mainan untuk stimulasi mental, dan interaksi sosial. Letakkan kandang di tempat yang cukup cahaya, namun hindari paparan langsung sinar matahari berlebihan.</p>
+        </article>
+        <article>
+          <h3>Merawat Hamster: Kecil Tapi Butuh Perhatian</h3>
+          <p>Hamster senang bermain dan menjelajah, jadi pastikan kandang memiliki terowongan, roda lari, dan tempat sembunyi. Gantilah serutan kayu secara rutin, dan jangan lupa beri makanan bergizi serta air bersih setiap hari.</p>
+        </article>
+        <article>
+          <h3>Merawat Ikan Hias: Memahami Ekosistem Akuarium</h3>
+          <p>Jangan hanya mengisi akuarium dengan air dan ikan. Pastikan filter berfungsi baik, suhu air sesuai, dan kadar pH seimbang. Pilih jenis ikan yang cocok disatukan agar tidak saling menyerang. Ganti sebagian air tiap minggu untuk menjaga kualitas hidup ikan.</p>
+        </article>
+        <article>
+          <h3>Reptil Peliharaan: Ular, Kura-Kura, dan Kadal</h3>
+          <p>Reptil butuh habitat yang mendekati alami. Sediakan lampu UVB, pengatur suhu, dan tempat bersembunyi. Setiap spesies punya kebutuhan berbeda, jadi penting untuk membaca panduan spesifik dan konsultasi dengan dokter hewan eksotik.</p>
+        </article>
+
+        <div id="artikelTambahan"></div>
+      </div>
+    </section>
+
+    <!-- Forum -->
+    <section id="forumSection" style="display: none;">
+      <h2>Forum Diskusi</h2>
+
+      <div class="new-post-form">
+        <h4>Tanyakan Sesuatu</h4>
+        <input type="text" id="newPostTitle" placeholder="Judul Pertanyaan" />
+        <textarea id="newPostBody" placeholder="Tulis detail pertanyaan..." rows="3"></textarea>
+        <button onclick="addNewPost()">Tanyakan</button>
+      </div>
+
+      <div class="forum-category">
+        <h3>Pertanyaan & Jawaban</h3>
+        <div id="forumPosts"></div>
+      </div>
+    </section>
+
+    <!-- Adopsi -->
+    <section id="adopsiSection" style="display: none;">
+      <h2>Hewan yang Tersedia untuk Diadopsi</h2>
+      <div class="adopsi-container">
+        <div class="hewan-card">
+          <img src="kucing1.jpg" alt="Milo">
+          <div class="hewan-info">
+            <h3>Milo</h3>
+            <p>Usia: 1 tahun</p>
+           <button class="btn-adopsi" onclick="ajukanAdopsi('Milo')">Adopsi</button>
+          </div>
+        </div>
+    
+        <div class="hewan-card">
+          <img src="anjing1.jpg" alt="Buddy">
+          <div class="hewan-info">
+            <h3>Buddy</h3>
+            <p>Usia: 2 tahun</p>
+            <button class="btn-adopsi" onclick="ajukanAdopsi('Buddy')">Adopsi</button>
+          </div>
+        </div>
+    
+        <div class="hewan-card">
+          <img src="kelinci1.jpg" alt="Lili">
+          <div class="hewan-info">
+            <h3>Lili</h3>
+            <p>Usia: 8 bulan</p>
+            <button class="btn-adopsi" onclick="ajukanAdopsi('Lili')">Adopsi</button>
+          </div>
+        </div>
+    
+        <div class="hewan-card">
+          <img src="kucing2.jpg" alt="Tom">
+          <div class="hewan-info">
+            <h3>Tom</h3>
+            <p>Usia: 3 tahun</p>
+            <button class="btn-adopsi" onclick="ajukanAdopsi('Tom')">Adopsi</button>
+          </div>
+        </div>
+    
+        <div class="hewan-card">
+          <img src="hamster1.jpg" alt="Choco">
+          <div class="hewan-info">
+            <h3>Choco</h3>
+            <p>Usia: 5 bulan</p>
+            <button class="btn-adopsi" onclick="ajukanAdopsi('Choco')">Adopsi</button>
+          </div>
+        </div>
+    
+        <div class="hewan-card">
+          <img src="anjing2.jpg" alt="Max">
+          <div class="hewan-info">
+            <h3>Max</h3>
+            <p>Usia: 1,5 tahun</p>
+            <button class="btn-adopsi" onclick="ajukanAdopsi('Max')">Adopsi</button>
+          </div>
+        </div>
+    
+        <div class="hewan-card">
+          <img src="otter1.jpg" alt="Luna">
+          <div class="hewan-info">
+            <h3>Luna</h3>
+            <p>Usia: 2 tahun</p>
+            <button class="btn-adopsi" onclick="ajukanAdopsi('Luna')">Adopsi</button>
+          </div>
+        </div>
+    
+        <div class="hewan-card">
+          <img src="ikan1.jpg" alt="Nemo">
+          <div class="hewan-info">
+            <h3>Nemo</h3>
+            <p>Usia: 6 bulan</p>
+            <button class="btn-adopsi" onclick="ajukanAdopsi('Nemo')">Adopsi</button>
+          </div>
+        </div>
+    
+        <div class="hewan-card">
+          <img src="burung1.jpg" alt="Sky">
+          <div class="hewan-info">
+            <h3>Sky</h3>
+            <p>Usia: 1 tahun</p>
+            <button class="btn-adopsi" onclick="ajukanAdopsi('Sky')">Adopsi</button>
+          </div>
+        </div>
+    
+        <div class="hewan-card">
+          <img src="kura1.jpg" alt="Shelly">
+          <div class="hewan-info">
+            <h3>Shelly</h3>
+            <p>Usia: 4 tahun</p>
+           <button class="btn-adopsi" onclick="ajukanAdopsi('Shelly')">Adopsi</button>
+          </div>
+    </section>
+
+    <!-- Kontak & Pesan -->
+    <section id="kontakSection" style="display: none;">
+      <h2>Kontak & Konsultasi</h2>
+
+      <div class="kontak-info">
+        <h3>Kontak Person</h3>
+        <p>📞 Shanty: <strong>0821-2068-9165</strong></p>
+        <p>📧 Email: <strong>support@petcare.com</strong></p>
+        <p>🕒 Jam Operasional: 08.00 - 20.00 WIB</p>
+      </div>
+
+      <div class="dokter-info">
+        <h3>Konsultasi Dokter Hewan</h3>
+        <ul>
+          <li><strong>drh. Lusi</strong> – @Lusi.Official (Instagram)</li>
+          <li><strong>drh. Bima</strong> – @Bima.Official (Instagram)</li>
+        </ul>
+      </div>
+
+      <form id="formKontak">
+        <h3>Formulir Pesan atau Konsultasi</h3>
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="pesan">Isi Pesan:</label>
+        <textarea id="pesan" name="pesan" rows="4" required></textarea>
+
+        <button type="submit">Kirim</button>
+      </form>
+
+      <div id="daftarPesan" style="margin-top: 30px;">
+        <h3>Pesan Konsultasi Masuk</h3>
+        <ul id="pesanList" style="list-style-type: none; padding: 0;"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.querySelector("nav");
+      nav.classList.toggle("show");
+    }
+
+    // Menampilkan nama user login
+    function tampilkanNamaUser() {
+      const user = JSON.parse(localStorage.getItem("activeUser"));
+      if (user && user.name) {
+        document.getElementById("userName").textContent = user.name;
+      }
+    }
+
+    // Render artikel tambahan dari localStorage
+    function renderArtikelTambahan() {
+      const container = document.getElementById("artikelTambahan");
+      const data = JSON.parse(localStorage.getItem("artikelData") || "[]");
+      container.innerHTML = "";
+
+      if (data.length === 0) return;
+
+      data.forEach((item) => {
+        container.innerHTML += `
+          <article>
+            <h3>${item.judul}</h3>
+            <p><em>Oleh ${item.penulis}, ${item.tanggal}</em></p>
+          </article>
+        `;
+      });
+    }
+
+    // Fungsi forum
+    function initForumPosts() {
+      const existing = localStorage.getItem("forumPosts");
+      if (!existing) {
+        const defaultPosts = [
+          {
+            id: 1,
+            title: "Bagaimana cara merawat kucing yang baru diadopsi?",
+            body: "Apakah ada tips khusus untuk merawat kucing yang baru diadopsi? Saya baru saja mengadopsi kucing dan ingin memastikan dia nyaman di rumah baru.",
+            comments: [],
+          },
+          {
+            id: 2,
+            title: "Apa yang harus dilakukan jika anjing saya terlihat lesu?",
+            body: "Anjing saya tampak lebih lesu dari biasanya, apakah itu tanda penyakit atau hanya kelelahan?",
+            comments: [],
+          },
+        ];
+        localStorage.setItem("forumPosts", JSON.stringify(defaultPosts));
+      }
+    }
+
+    function renderForumPosts() {
+      const forumCategory = document.querySelector(".forum-category");
+      forumCategory.innerHTML = "<h3>Pertanyaan & Jawaban</h3>";
+      const posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+
+      posts.forEach((post) => {
+        const postDiv = document.createElement("div");
+        postDiv.className = "forum-post";
+        postDiv.id = `post${post.id}`;
+
+        let commentsHTML = "";
+        post.comments.forEach((comment, index) => {
+          commentsHTML += `
+            <div class="comment">
+              ${comment}
+              <button onclick="deleteComment(${post.id}, ${index})">Hapus</button>
+            </div>
+          `;
+        });
+
+        postDiv.innerHTML = `
+          <h4>${post.title}</h4>
+          <p>${post.body}</p>
+          <button onclick="deletePost(${post.id})">Hapus Postingan</button>
+          <div class="comment-section">
+            <textarea id="commentInput${post.id}" placeholder="Tulis komentar..." rows="3"></textarea>
+            <button onclick="addComment(${post.id})">Kirim Komentar</button>
+            <div class="comments" id="comments${post.id}">
+              ${commentsHTML}
+            </div>
+          </div>
+        `;
+
+        forumCategory.appendChild(postDiv);
+      });
+    }
+
+    function addNewPost() {
+      const title = document.getElementById("newPostTitle").value.trim();
+      const body = document.getElementById("newPostBody").value.trim();
+
+      if (!title || !body) {
+        alert("Judul dan isi pertanyaan tidak boleh kosong.");
+        return;
+      }
+
+      const posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+      const newPost = {
+        id: Date.now(),
+        title,
+        body,
+        comments: [],
+      };
+
+      posts.push(newPost);
+      localStorage.setItem("forumPosts", JSON.stringify(posts));
+
+      renderForumPosts();
+      document.getElementById("newPostTitle").value = "";
+      document.getElementById("newPostBody").value = "";
+    }
+
+    function addComment(postId) {
+      const commentInput = document.getElementById(`commentInput${postId}`);
+      const commentText = commentInput.value.trim();
+
+      if (commentText) {
+        const posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+        const postIndex = posts.findIndex((p) => p.id === postId);
+        if (postIndex !== -1) {
+          posts[postIndex].comments.push(commentText);
+          localStorage.setItem("forumPosts", JSON.stringify(posts));
+          renderForumPosts();
+        }
+        commentInput.value = "";
+      } else {
+        alert("Komentar tidak boleh kosong.");
+      }
+    }
+
+    function deleteComment(postId, commentIndex) {
+      if (confirm("Yakin ingin menghapus komentar ini?")) {
+        const posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+        const post = posts.find((p) => p.id === postId);
+        if (post) {
+          post.comments.splice(commentIndex, 1);
+          localStorage.setItem("forumPosts", JSON.stringify(posts));
+          renderForumPosts();
+        }
+      }
+    }
+
+    function deletePost(postId) {
+      if (confirm("Yakin ingin menghapus postingan ini?")) {
+        const posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+        const updatedPosts = posts.filter((p) => p.id !== postId);
+        localStorage.setItem("forumPosts", JSON.stringify(updatedPosts));
+        renderForumPosts();
+      }
+    }
+
+    // Fungsi mengajukan adopsi
+    function ajukanAdopsi(namaHewan) {
+        const user = JSON.parse(localStorage.getItem("activeUser"));
+      if (!user || !user.email) {
+        alert("Silakan login terlebih dahulu untuk mengajukan adopsi.");
+    window.location.href = "login.html";
+    return;
+  }
+
+        const adopsiData = JSON.parse(localStorage.getItem("adopsiData") || "[]");
+
+        const newAdopsi = {
+        email: user.email,
+        hewan: namaHewan,
+        status: "Menunggu",
+        waktu: new Date().toLocaleString()
+  };
+
+  adopsiData.push(newAdopsi);
+  localStorage.setItem("adopsiData", JSON.stringify(adopsiData));
+
+  alert(`Permintaan adopsi untuk ${namaHewan} berhasil dikirim 🫶🏻`);
+}
+
+    // Fungsi akses admin
+    function aksesAdmin() {
+      const email = prompt("Masukkan email admin:");
+      const password = prompt("Masukkan password admin:");
+
+      if (email === "admin@petcare.com" && password === "admin123") {
+        window.location.href = "admin.html";
+      } else {
+        alert("Akses ditolak. Hanya admin yang bisa masuk.");
+      }
+    }
+
+    // Fungsi logout
+    function logout() {
+      localStorage.removeItem("activeUser");
+      window.location.href = "login.html";
+    }
+
+    // Fungsi navigasi halaman
+    function showBeranda() {
+      showSection("berandaSection");
+    }
+
+    function showSection(sectionId) {
+      const sections = ["berandaSection", "artikelSection", "forumSection", "adopsiSection", "kontakSection"];
+      sections.forEach((id) => {
+        document.getElementById(id).style.display = id === sectionId ? "block" : "none";
+      });
+    }
+
+    // Kontak & Pesan
+    const form = document.getElementById("formKontak");
+    const pesanUl = document.getElementById("pesanList");
+
+    function getPesanList() {
+      return JSON.parse(localStorage.getItem("pesanKonsultasi") || "[]");
+    }
+
+    function renderPesan() {
+      const pesanList = getPesanList();
+      pesanUl.innerHTML = "";
+      if (pesanList.length === 0) {
+        pesanUl.innerHTML = "<li>Belum ada pesan masuk.</li>";
+        return;
+      }
+
+      pesanList.forEach((pesan) => {
+        const li = document.createElement("li");
+        li.style = "background: #f0f8ff; margin-bottom: 10px; padding: 10px; border-left: 4px solid #007BFF;";
+        li.innerHTML = `
+          <strong>${pesan.nama}</strong> (${pesan.email})<br/>
+          <em>${pesan.teks}</em>
+        `;
+        pesanUl.appendChild(li);
+      });
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const nama = document.getElementById("nama").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const teks = document.getElementById("pesan").value.trim();
+
+      if (!nama || !email || !teks) {
+        alert("Semua kolom wajib diisi.");
+        return;
+      }
+
+      const pesanList = getPesanList();
+      pesanList.push({ nama, email, teks });
+      localStorage.setItem("pesanKonsultasi", JSON.stringify(pesanList));
+
+      form.reset();
+      renderPesan();
+      alert("Pesan kamu berhasil dikirim ya, Sayang 💌");
+    });
+
+    // Inisialisasi saat halaman selesai dimuat
+    document.addEventListener("DOMContentLoaded", () => {
+      tampilkanNamaUser();
+      renderArtikelTambahan();
+      initForumPosts();
+      renderForumPosts();
+      renderPesan();
+      showSection("berandaSection");
+    });
+  </script>
+</body>
+</html>

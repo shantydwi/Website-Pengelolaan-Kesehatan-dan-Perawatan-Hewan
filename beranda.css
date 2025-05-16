@@ -1,0 +1,596 @@
+/* === Struktur Umum === */
+body {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  background: url("beranda.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+ /* Hilangkan scroll horizontal */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Pastikan gambar tidak meluber */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+}
+
+header {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  gap: 1rem;
+}
+
+.logo {
+  height: 50px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  flex: 1;
+  text-align: center;
+  color: #f88f70;
+}
+
+header button {
+  background-color: white;
+  color: #f88f70;
+  border: 2px solid #f88f70;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+header button:hover {
+  background-color: #f88f70;
+  color: white;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.welcome {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 500px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.welcome h2 {
+  color: #f88f70;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+nav {
+  margin-left: 2rem;
+}
+
+.navbar {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li a {
+  display: inline-block;
+  background-color: white;
+  color: #f88f70;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.navbar li a:hover {
+  background-color: #f88f70;
+  color: white;
+}
+
+#artikelSection {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+#artikelSection h2 {
+  color: #f88f70;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+#artikelSection article {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-left: 5px solid #f88f70;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+#artikelSection article:hover {
+  transform: translateY(-4px);
+}
+
+#artikelSection h3 {
+  margin-top: 0;
+  color: #f88f70;
+  font-size: 1.2rem;
+}
+
+#artikelSection p {
+  margin: 0.5rem 0 0 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 2rem auto 1.5rem auto;
+  width: 100%;
+  max-width: 700px;
+}
+
+.filter-buttons button {
+  background-color: white;
+  color: #f88f70;
+  border: 2px solid #f88f70;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.filter-buttons button:hover {
+  background-color: #f88f70;
+  color: white;
+}
+
+/* === Forum Section === */
+#forumSection {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  margin: 2rem auto;
+}
+
+#forumSection h2 {
+  color: #f88f70;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.forum-category {
+  margin-bottom: 2rem;
+}
+
+.forum-category h3 {
+  font-size: 1.4rem;
+  color: #f88f70;
+  margin-bottom: 1rem;
+}
+
+.forum-post {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.forum-post:hover {
+  transform: translateY(-4px);
+}
+
+.forum-post h4 {
+  color: #f88f70;
+  font-size: 1.2rem;
+}
+
+.forum-post p {
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+.comment-section {
+  margin-top: 1rem;
+  border-top: 1px solid #f88f70;
+  padding-top: 1rem;
+}
+
+.comment-section textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  resize: vertical;
+}
+
+.comment-section button {
+  background-color: #f88f70;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-section button:hover {
+  background-color: #e57b3e;
+}
+
+.comments {
+  margin-top: 1rem;
+}
+
+.comment {
+  background-color: #f9f9f9;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.comment:hover {
+  transform: translateY(-2px);
+}
+
+/* Tambahan Styling */
+.main-content {
+  box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.add-post {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f4f4f4;
+}
+
+.add-post textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.add-post button {
+  background-color: #f88f70;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-post button:hover {
+  background-color: #f88f70;
+}
+
+.new-post-form {
+  margin-bottom: 20px;
+  background-color:#FFFACD;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.new-post-form input,
+.new-post-form textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  font-family: inherit;
+  border: 1px solid #f88f70;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.new-post-form button {
+  padding: 10px 16px;
+  background-color: #f88f70;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.new-post-form button:hover {
+  background-color: #f88f70;
+}
+
+/* === Responsive + Hamburger Menu === */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .navbar li a {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  header h1 {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  .welcome,
+  #artikelSection,
+  #forumSection {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .new-post-form,
+  .forum-post {
+    padding: 1rem;
+  }
+
+  .new-post-form input,
+  .new-post-form textarea {
+    font-size: 0.9rem;
+  }
+
+  .new-post-form button {
+    width: 100%;
+  }
+
+  header button {
+    width: 100%;
+    max-width: 200px;
+    align-self: center;
+  }
+
+  .hamburger {
+    display: block;
+    margin: 0 auto;
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+  }
+
+  nav.show {
+    display: block;
+  }
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #f88f70;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* === Adopsi Section === */
+#adopsiSection {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 100%;
+  width: 100%;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  margin: 2rem 0;
+}
+
+#adopsiSection h2 {
+  color: #f88f70;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Container ubah jadi grid vertikal */
+.adopsi-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 2-4 kolom adaptif */
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+/* Styling untuk masing-masing kartu hewan */
+.hewan-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 100%;
+  transition: transform 0.2s ease;
+}
+
+.hewan-card:hover {
+  transform: translateY(-5px);
+}
+
+.hewan-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.hewan-info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.hewan-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #f88f70;
+}
+
+.hewan-info p {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.btn-adopsi {
+  margin-top: 0.8rem;
+  background-color: #f88f70;
+  color: white;
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-adopsi:hover {
+  background-color: #e57b3e;
+}
+
+/* === Kontak & Pesan Section === */
+#kontakSection {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  margin: 2rem auto;
+}
+
+#kontakSection h2 {
+  color: #f88f70;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+#formKontak {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#formKontak label {
+  font-weight: bold;
+  color: #333;
+}
+
+#formKontak input,
+#formKontak textarea {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#formKontak button {
+  background-color: #f88f70;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#formKontak button:hover {
+  background-color: #e57b3e;
+}
+
+.kontak-info, .dokter-info {
+  background-color: #fffbe6;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.kontak-info h3,
+.dokter-info h3 {
+  color: #f88f70;
+  margin-bottom: 0.5rem;
+}
+
+.dokter-info ul {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.dokter-info li {
+  margin-bottom: 0.5rem;
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PetCare Login</title>
+  <link rel="stylesheet" href="login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="card" id="loginCard">
+    <img src="Pet Care.png" alt="Cat" class="pet-icon">
+    <h2>Login</h2>
+    <form onsubmit="return login(event)">
+      <label for="loginEmail">Email address</label>
+      <input type="email" id="loginEmail" required>
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword" required>
+      <button type="submit">Log in</button>
+    </form>
+    <div class="switch">
+      Belum punya akun? <a href="#" onclick="toggleForms('register')">Daftar</a>
+    </div>
+  </div>
+
+  <div class="card" id="registerCard" style="display: none">
+    <img src="Pet Care.png" alt="Cat" class="pet-icon">
+    <h2>Daftar</h2>
+    <form onsubmit="return register(event)">
+      <label for="registerName">Nama</label>
+      <input type="text" id="registerName" required>
+      <label for="registerEmail">Email</label>
+      <input type="email" id="registerEmail" required>
+      <label for="registerPassword">Password</label>
+      <input type="password" id="registerPassword" required>
+      <button type="submit">Daftar</button>
+    </form>
+    <div class="switch">
+      Sudah punya akun? <a href="#" onclick="toggleForms('login')">Login</a>
+    </div>
+  </div>
+
+  <script>
+    // Tambahkan akun default user@gmail.com (jika belum ada)
+    window.onload = function () {
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      const defaultUser = { name: "User Default", email: "user@gmail.com", password: "user" };
+      const exists = users.some(u => u.email === defaultUser.email);
+      if (!exists) {
+        users.push(defaultUser);
+        localStorage.setItem('users', JSON.stringify(users));
+      }
+    };
+
+    function toggleForms(show) {
+      document.getElementById('loginCard').style.display = show === 'login' ? 'block' : 'none';
+      document.getElementById('registerCard').style.display = show === 'register' ? 'block' : 'none';
+    }
+
+    function register(event) {
+      event.preventDefault();
+      const name = document.getElementById('registerName').value;
+      const email = document.getElementById('registerEmail').value;
+      const password = document.getElementById('registerPassword').value;
+
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      const userExists = users.some(user => user.email === email);
+      if (userExists) {
+        alert('Email sudah terdaftar!');
+        return;
+      }
+
+      const newUser = { name, email, password };
+      users.push(newUser);
+      localStorage.setItem('users', JSON.stringify(users));
+      alert('Pendaftaran berhasil!');
+      toggleForms('login');
+    }
+
+    function login(event) {
+      event.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const matchedUser = users.find(user => user.email === email && user.password === password);
+
+      if (matchedUser) {
+        localStorage.setItem('activeUser', JSON.stringify(matchedUser));
+        alert('Login berhasil!');
+        window.location.href = 'beranda.html';
+      } else {
+        alert('Email atau password salah.');
+      }
+    }
+  </script>
+</body>
+</html>
